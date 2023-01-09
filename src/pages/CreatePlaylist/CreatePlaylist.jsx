@@ -66,10 +66,8 @@ const CreatePlaylist = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     mutation.mutate(playlist)
-    if (mutation.isSuccess) {
-      queryClient.invalidateQueries('playlists')
-      navigate('/')
-    }
+    if (mutation.isSuccess) queryClient.invalidateQueries('playlists')
+    navigate('/')
   }
 
   return (
