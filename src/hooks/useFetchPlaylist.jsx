@@ -9,7 +9,7 @@ export const useFetchPlaylist = () => {
       return response.data
     },
     refetchOnMount: true,
-    refetchOnWindowFocus: 'always',
+    refetchOnWindowFocus: true,
   })
   return { isLoading, error, data }
 }
