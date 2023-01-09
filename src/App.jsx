@@ -5,13 +5,7 @@ import Home from './pages/Home/Home'
 import Loved from './pages/Loved/Loved'
 
 function App() {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-      },
-    },
-  })
+  const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
