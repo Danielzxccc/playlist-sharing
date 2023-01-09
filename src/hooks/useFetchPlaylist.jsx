@@ -8,7 +8,7 @@ export const useFetchPlaylist = () => {
       const response = await axios.get('/playlists/get')
       return response.data
     },
-    refetchOnMount: true,
+    refetchOnMount: 'always',
     refetchOnWindowFocus: true,
   })
   return { isLoading, error, data }

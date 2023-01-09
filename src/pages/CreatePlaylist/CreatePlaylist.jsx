@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import { useDebounce } from '../../hooks/useDebounce'
@@ -8,7 +8,7 @@ import './CreatePlaylist.css'
 
 const CreatePlaylist = () => {
   const navigate = useNavigate()
-
+  const queryClient = useQueryClient()
   //states
   const [playlist, setPlaylist] = useState({
     title: '',
@@ -65,6 +65,7 @@ const CreatePlaylist = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (mutation.isSuccess) queryClient.invalidateQueries('playlists')
     mutation.mutate(playlist)
     navigate('/')
   }
