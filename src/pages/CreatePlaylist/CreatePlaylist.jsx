@@ -124,7 +124,7 @@ const CreatePlaylist = () => {
             />
           </div>
           <div className='mb-2 d-flex justify-content-center mx-3'>
-            <img src={playlist.imgsrc} alt='' />
+            <img src={playlist.imgsrc} alt='' width={300} />
           </div>
           <div className='d-flex '>
             {invalidLink ? (
