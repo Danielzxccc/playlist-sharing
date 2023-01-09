@@ -57,14 +57,19 @@ const CreatePlaylist = () => {
   }, [debouncedStateLink])
 
   //mutations
-  const mutation = useMutation((playlist) => {
-    return axios.post('/playlists/create', playlist)
+  const mutation = useMutation({
+    mutationFn: (playlist) => axios.post('/playlists/create', playlist),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['playlists'] })
+      navigate('/')
+    },
   })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     mutation.mutate(playlist)
-    if (mutation.isSuccess) queryClient.invalidateQueries('playlists')
+    if (mutation.isSuccess)
+      queryClient.invalidateQueries({ queryKey: ['playlists'] })
     navigate('/')
   }
 

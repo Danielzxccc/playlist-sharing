@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className='container text-white'>
       <Navbar />
-      <h6 className='px-4'>Beta Testing... ayaw mag refetch hays</h6>
+      <h6 className='px-4'>Beta Testing...</h6>
       <Playlist />
     </div>
   )
