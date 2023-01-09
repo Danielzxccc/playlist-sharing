@@ -9,7 +9,7 @@ const Playlist = () => {
   if (error) return <h1>Error ...</h1>
 
   return (
-    <div className='row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3'>
+    <div className='row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3'>
       {data.map((item, index) => (
         <PlaylistCards item={item} key={index} index={index} />
       ))}

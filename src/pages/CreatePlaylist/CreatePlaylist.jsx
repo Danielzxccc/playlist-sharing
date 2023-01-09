@@ -37,7 +37,6 @@ const CreatePlaylist = () => {
       setPlaylist({
         ...playlist,
         title: result.title,
-        description: result.description,
         imgsrc: result.image,
       })
       setInvalidLink(false)
@@ -46,7 +45,6 @@ const CreatePlaylist = () => {
       setPlaylist({
         ...playlist,
         title: '',
-        description: '',
         imgsrc: '',
       })
     }
@@ -106,7 +104,8 @@ const CreatePlaylist = () => {
               <textarea
                 className='form-control text-white'
                 placeholder='Leave a comment here'
-                rows={6}
+                rows={3}
+                maxLength='60'
                 name='description'
                 defaultValue={playlist.description}
                 onChange={handleChange}
