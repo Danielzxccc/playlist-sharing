@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import { useDebounce } from '../../hooks/useDebounce'
 import './CreatePlaylist.css'
+import * as api from '../../api/playlistApi'
 
 const CreatePlaylist = () => {
   const navigate = useNavigate()
@@ -32,7 +33,7 @@ const CreatePlaylist = () => {
   //fetch playlist details
   const fetchInfo = async () => {
     try {
-      const data = await axios.post('/playlists/info', { link: playlist.link })
+      const data = await api.getInfo(playlist.link)
       const result = data.data
       setPlaylist({
         ...playlist,
@@ -59,8 +60,10 @@ const CreatePlaylist = () => {
   //mutations
   const mutation = useMutation({
     mutationFn: (playlist) => axios.post('/playlists/create', playlist),
-    onError: () =>
-      alert('This playlist already exists in the current database.'),
+    onError: (error) => {
+      console.log(error.response.status)
+      alert('This playlist already exists in the current database.')
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playlists'] })
       navigate('/')

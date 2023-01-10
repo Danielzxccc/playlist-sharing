@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:css": "sass src/index.scss dist/index.css",
     "preview": "vite preview"
   },
   "dependencies": {
