@@ -81,7 +81,9 @@ const CreatePlaylist = () => {
       <div className='d-flex justify-content-center flex-col'>
         <form onSubmit={handleSubmit} className='px-4 py-2 mt-4'>
           <div className='mb-2'>
-            <label className='form-label'>Playlist Link</label>
+            <label htmlFor='name' className='form-label'>
+              Playlist Link
+            </label>
             <input
               type='url'
               name='link'
@@ -95,7 +97,9 @@ const CreatePlaylist = () => {
             )}
           </div>
           <div className='mb-4'>
-            <label className='form-label'>Title</label>
+            <label htmlFor='title' className='form-label'>
+              Title
+            </label>
             <input
               type='text'
               name='title'
@@ -107,12 +111,14 @@ const CreatePlaylist = () => {
           </div>
           <div className='mb-2'>
             <div>
-              <label className='form-label'>Description</label>
+              <label htmlFor='description' className='form-label'>
+                Description
+              </label>
               <textarea
                 className='form-control text-white'
                 placeholder='Leave a comment here'
                 rows={3}
-                maxLength='60'
+                maxLength='100'
                 name='description'
                 defaultValue={playlist.description}
                 onChange={handleChange}
@@ -120,9 +126,12 @@ const CreatePlaylist = () => {
             </div>
           </div>
           <div className='mb-2'>
-            <label className='form-label'>Submitted By:</label>
+            <label htmlFor='sentby' className='form-label'>
+              Submitted By:
+            </label>
             <input
               type='text'
+              maxLength={20}
               name='sentby'
               className='form-control text-white'
               onChange={handleChange}
