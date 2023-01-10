@@ -1,1 +1,2 @@
-src/index.css.map linguist-vendored
+*.css linguist-vendored
+*.css.map linguist-vendored
