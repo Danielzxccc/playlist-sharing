@@ -59,9 +59,8 @@ const CreatePlaylist = () => {
 
   //mutations
   const mutation = useMutation({
-    mutationFn: (playlist) => axios.post('/playlists/create', playlist),
+    mutationFn: (playlist) => api.createPlaylist(playlist),
     onError: (error) => {
-      console.log(error.response.status)
       alert('This playlist already exists in the current database.')
     },
     onSuccess: () => {
