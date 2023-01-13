@@ -8,12 +8,11 @@ const PlaylistCards = ({ item, index }) => {
   }
   return (
     <div className='col bg-transparent my-2 h-100' key={index}>
-      <div
-        className='bg-light px-3 py-2 rounded'
-        role='button'
-        onClick={() => handleNavigate(item.id)}
-      >
-        <div className='ratio ratio-1x1'>
+      <div className='bg-light px-3 py-2 rounded' role='button'>
+        <div
+          className='ratio ratio-1x1'
+          onClick={() => handleNavigate(item.id)}
+        >
           <img
             src={item.imgsrc === null ? alt : item.imgsrc}
             className='card-img-top'

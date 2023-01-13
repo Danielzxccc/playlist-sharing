@@ -66,7 +66,8 @@ const PlaylistItem = ({ info, comments }) => {
           <span className='fw-bold'>playlist by</span> : {details.sentby}
         </h4>
         <h4>
-          <span className='fw-bold'>Description</span> : {details.description}
+          <span className='fw-bold'>Description</span> :{' '}
+          <span className='fst-italic'>{details.description}</span>
         </h4>
       </div>
       <div className='mx-auto'>
