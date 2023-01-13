@@ -17,6 +17,7 @@ const CreatePlaylist = () => {
     sentby: '',
     description: '',
     imgsrc: '',
+    embedsrc: '',
   })
   //   const [image, setImage] = useState('')
   const [invalidLink, setInvalidLink] = useState(false)
@@ -39,6 +40,7 @@ const CreatePlaylist = () => {
         ...playlist,
         title: result.title,
         imgsrc: result.image,
+        embedsrc: result.embed,
       })
       setInvalidLink(false)
     } catch (error) {

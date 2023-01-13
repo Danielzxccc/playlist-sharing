@@ -1,9 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PlaylistCards = ({ item, index }) => {
+  const navigate = useNavigate()
+  const handleNavigate = (id) => {
+    navigate(`/playlist/info/${id}`)
+  }
   return (
     <div className='col bg-transparent my-2 h-100' key={index}>
-      <div className='bg-light px-3 py-2 rounded' role='button'>
+      <div
+        className='bg-light px-3 py-2 rounded'
+        role='button'
+        onClick={() => handleNavigate(item.id)}
+      >
         <div className='ratio ratio-1x1'>
           <img
             src={item.imgsrc === null ? alt : item.imgsrc}

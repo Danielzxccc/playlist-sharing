@@ -1,9 +1,16 @@
 import React from 'react'
 
-const PageButton = ({ pg, setPage }) => {
+const PageButton = ({ pg, setPage, isPreviousData }) => {
+  const handlePage = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setPage(pg)
+  }
   return (
-    <li className='page-item'>
-      <span onClick={() => setPage(pg)} className='page-link'>
+    <li
+      role='button'
+      className={isPreviousData ? 'page-item disabled' : 'page-item'}
+    >
+      <span role='button' onClick={handlePage} className='page-link'>
         {pg}
       </span>
     </li>

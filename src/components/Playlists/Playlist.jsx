@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import { useFetchPlaylist } from '../../hooks/useFetchPlaylist'
 import PageButton from './PageButton'
 import PlaylistCards from './PlaylistCards'
+import { useDebounce } from '../../hooks/useDebounce'
 const Playlist = () => {
   const [page, setPage] = useState(1)
-  const { isLoading, error, data, isPreviousData } = useFetchPlaylist(page)
   const [query, setQuery] = useState('')
+  const deboucedQuery = useDebounce(query, 800)
+  const { isLoading, error, data, isPreviousData } = useFetchPlaylist(
+    page,
+    deboucedQuery
+  )
 
   if (isLoading) return <h1>Loading ...</h1>
   if (error) return <h1>Error ...</h1>
 
-  const lastPage = () => setPage(data.pagination.total_pages)
+  const lastPage = () => {
+    setPage(data.pagination.total_pages)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
-  const firstPage = () => setPage(1)
+  const firstPage = () => {
+    setPage(1)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleSearch = (e) => {
+    setQuery(e.target.value)
+    setPage(1)
+  }
 
   const pagesArray = Array(data.pagination.total_pages)
     .fill()
@@ -28,39 +43,42 @@ const Playlist = () => {
           className='form-control text-white'
           name='query'
           style={{ width: 200 }}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleSearch}
         />
       </div>
       <div className='row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3'>
-        {data.playlist
-          .filter((item) => {
-            return Object.keys(item).some((key) =>
-              item[key].toString().toLowerCase().includes(query.toLowerCase())
-            )
-          })
-          .map((item, index) => (
-            <PlaylistCards item={item} key={index} index={index} />
-          ))}
+        {data.playlist.map((item, index) => (
+          <PlaylistCards item={item} key={index} index={index} />
+        ))}
       </div>
 
       <nav className='d-flex justify-content-center mt-2'>
-        <ul className='pagination bg-dark'>
+        <ul className='pagination'>
           <li
-            className='page-item'
+            className={
+              isPreviousData || page === 1 ? 'page-item disabled' : 'page-item'
+            }
             onClick={firstPage}
-            disabled={isPreviousData || page === 1}
           >
-            <span className='page-link'>&lt;&lt;</span>
+            <span className='page-link'>First Page</span>
           </li>
           {pagesArray.map((pg) => (
-            <PageButton key={pg} pg={pg} setPage={setPage} />
+            <PageButton
+              key={pg}
+              pg={pg}
+              setPage={setPage}
+              isPreviousData={isPreviousData}
+            />
           ))}
           <li
-            className='page-item'
+            className={
+              isPreviousData || page === data.pagination.total_pages
+                ? 'page-item disabled'
+                : 'page-item'
+            }
             onClick={lastPage}
-            disabled={isPreviousData || page === data.pagination.total_pages}
           >
-            <span className='page-link'>&gt;&gt;</span>
+            <span className='page-link'>Last Page</span>
           </li>
         </ul>
       </nav>
