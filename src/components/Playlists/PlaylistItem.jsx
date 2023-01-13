@@ -57,7 +57,6 @@ const PlaylistItem = ({ info, comments }) => {
       name: randomUsername(),
     })
   }
-  console.log(commentObj.message)
 
   return (
     <div>

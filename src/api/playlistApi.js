@@ -7,7 +7,7 @@ const api = axios.create({
 })
 
 const api2 = axios.create({
-  baseURL: 'https://playlist-sharing-api.vercel.app/playlists',
+  baseURL: 'https://playlist-sharing-api.vercel.app/comments',
 })
 
 export const getPlaylists = (pageNumber, search) =>
