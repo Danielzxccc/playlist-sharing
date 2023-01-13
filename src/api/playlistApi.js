@@ -3,11 +3,11 @@ import axios from 'axios'
 //https://playlist-sharing-api.vercel.app/playlists
 // http://localhost:3500/playlists
 const api = axios.create({
-  baseURL: 'https://playlist-sharing-api.vercel.app/playlists',
+  baseURL: `${import.meta.env.VITE_URI}/playlists`,
 })
 
 const api2 = axios.create({
-  baseURL: 'https://playlist-sharing-api.vercel.app/comments',
+  baseURL: `${import.meta.env.VITE_URI}/comments`,
 })
 
 export const getPlaylists = (pageNumber, search) =>
