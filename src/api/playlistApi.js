@@ -15,6 +15,8 @@ export const getPlaylists = (pageNumber, search) =>
 
 export const getInfo = (link) => api.post('/info', { link: link })
 
+export const getTop = (type) => api.post('/top', { type: type })
+
 export const createPlaylist = (playlist) => api.post('/create', playlist)
 
 export const getPlaylistInfo = (id) => api.get(`/get/${id}`)

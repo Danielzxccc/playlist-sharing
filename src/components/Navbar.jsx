@@ -14,11 +14,11 @@ const Navbar = () => {
     },
     {
       name: 'Most Loved',
-      link: '/loved',
+      link: '/mostloved',
     },
     {
       name: 'Most Hated',
-      link: '/hated',
+      link: '/mosthated',
     },
     {
       name: 'Add Playlist',
