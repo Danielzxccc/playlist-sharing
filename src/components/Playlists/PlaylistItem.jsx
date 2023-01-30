@@ -112,7 +112,6 @@ const PlaylistItem = ({ info, comments }) => {
       <div className='comments mt-2 mx-3'>
         {comments.isError && <h1>Error...</h1>}
         {comments.isLoading && <h1>Loading...</h1>}
-        <div className='fw-bold text-danger'>Red Name = Hater</div>
         {comment?.map((item, index) => (
           <div className='my-3 border border-light p-3 rounded' key={index}>
             <div
